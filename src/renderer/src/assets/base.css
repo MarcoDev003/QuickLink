@@ -1,0 +1,58 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  /* Primary */
+  --quicklink-primary: #34d399;
+  --quicklink-primary-90: #34d39990;
+  --quicklink-primary-80: #34d39980;
+  --quicklink-primary-70: #34d39970;
+  --quicklink-primary-60: #34d39960;
+  --quicklink-primary-50: #34d39950;
+  --quicklink-primary-40: #34d39940;
+  --quicklink-primary-30: #34d39930;
+  --quicklink-primary-20: #34d39920;
+  --quicklink-primary-10: #34d39910;
+
+  /* Secondary */
+  --quicklink-secondary: #1e3a8a;
+
+  /* Background */
+  --quicklink-background: #1f2937;
+}
+
+.bg-primary {
+  background-color: var(--quicklink-primary) !important;
+}
+
+.text-primary {
+  color: var(--quicklink-primary);
+}
+
+.glow {
+  --glow-color: transparent;
+  box-shadow: 0 0 10px 2px var(--quicklink-primary);
+}
+
+.glow-primary {
+  box-shadow: 0 0 10px 2px var(--quicklink-primary);
+}
+
+.log-button {
+  padding: 40px;
+  & button {
+    width: 100%;
+    padding: 12px;
+    border-radius: 8px;
+
+    &[aria-label="guest"] {
+      padding: 0;
+      margin-top: 8px;
+    }
+
+    &[aria-label="access"] {
+      font-weight: bold;
+    }
+  }
+}

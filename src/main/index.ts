@@ -1,3 +1,4 @@
+/* eslint-disable prettier/prettier */
 import { app, shell, BrowserWindow, ipcMain, Tray, screen } from 'electron'
 import { join } from 'path'
 import { electronApp, optimizer, is } from '@electron-toolkit/utils'
@@ -69,7 +70,7 @@ function showDialog(): void {
     movable: false,
     frame: false,
     hasShadow: false,
-    backgroundColor: '#000',
+    backgroundColor: '#1f2937',
     webPreferences: {
       preload: join(__dirname, '../preload/index.js'),
       sandbox: false
@@ -125,8 +126,8 @@ function easeInOutCubic(t: number): number {
 function animateDialog(dialog: BrowserWindow): void {
   const targetX = screen.getPrimaryDisplay().bounds.width - 401 // Posizione finale a sinistra
   const startX = screen.getPrimaryDisplay().bounds.width - 1 // Inizia da destra dello schermo
-  const animationDuration = 300 // Durata dell'animazione in ms
-  const frames = 120 // Numero di fotogrammi dell'animazione
+  const animationDuration = 200 // Durata dell'animazione in ms
+  const frames = 30 // Numero di fotogrammi dell'animazione
   const interval = animationDuration / frames
 
   let currentFrame = 0
@@ -148,8 +149,8 @@ function animateDialog(dialog: BrowserWindow): void {
 function animateDialogHide(dialog: BrowserWindow): void {
   const targetX = screen.getPrimaryDisplay().bounds.width - 1 // Posizione finale al di fuori dello schermo
   const startX = screen.getPrimaryDisplay().bounds.width - 401 // Inizia dalla posizione finale
-  const animationDuration = 300 // Durata dell'animazione in ms
-  const frames = 120 // Numero di fotogrammi dell'animazione
+  const animationDuration = 200 // Durata dell'animazione in ms
+  const frames = 30 // Numero di fotogrammi dell'animazione
   const interval = animationDuration / frames
 
   let currentFrame = 0
@@ -197,7 +198,7 @@ app.whenReady().then(() => {
 
   // IPC test
   ipcMain.on('ping', () => console.log('pong'))
-
+  ipcMain.on('close-app', () => toggleDialog())
   // createWindow()
 
   // app.on('activate', function () {
