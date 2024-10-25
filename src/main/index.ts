@@ -2,7 +2,7 @@ import { app, shell, BrowserWindow, ipcMain, Tray, screen } from 'electron'
 import { join } from 'path'
 import { electronApp, optimizer, is } from '@electron-toolkit/utils'
 import windowsIco from '../../resources/ico.ico?asset'
-import icoPng from '../../resources/icon16x16.png?asset'
+import icoPng from '../../resources/icon_16x16.png?asset'
 
 /* function createWindow(): void {
   // Create the browser window.
@@ -73,7 +73,8 @@ function showDialog(): void {
     webPreferences: {
       preload: join(__dirname, '../preload/index.js'),
       sandbox: false
-    }
+    },
+    icon: '../../resources/icon_512X512.png'
   })
 
   // Imposta la posizione iniziale al di fuori dello schermo
@@ -122,7 +123,7 @@ function easeInOutCubic(t: number): number {
 }
 
 function animateDialog(dialog: BrowserWindow): void {
-  const targetX = screen.getPrimaryDisplay().bounds.width - 400 // Posizione finale a sinistra
+  const targetX = screen.getPrimaryDisplay().bounds.width - 401 // Posizione finale a sinistra
   const startX = screen.getPrimaryDisplay().bounds.width - 1 // Inizia da destra dello schermo
   const animationDuration = 300 // Durata dell'animazione in ms
   const frames = 120 // Numero di fotogrammi dell'animazione
@@ -146,7 +147,7 @@ function animateDialog(dialog: BrowserWindow): void {
 
 function animateDialogHide(dialog: BrowserWindow): void {
   const targetX = screen.getPrimaryDisplay().bounds.width - 1 // Posizione finale al di fuori dello schermo
-  const startX = screen.getPrimaryDisplay().bounds.width - 400 // Inizia dalla posizione finale
+  const startX = screen.getPrimaryDisplay().bounds.width - 401 // Inizia dalla posizione finale
   const animationDuration = 300 // Durata dell'animazione in ms
   const frames = 120 // Numero di fotogrammi dell'animazione
   const interval = animationDuration / frames
@@ -173,9 +174,9 @@ function animateDialogHide(dialog: BrowserWindow): void {
 // initialization and is ready to create browser windows.
 // Some APIs can only be used after this event occurs.
 app.whenReady().then(() => {
-  if (process.platform == 'darwin') {
+  /* if (process.platform == 'darwin') {
     app.dock.hide()
-  }
+  } */
   // Set app user model id for windows
   electronApp.setAppUserModelId('com.electron')
 
@@ -186,8 +187,9 @@ app.whenReady().then(() => {
     optimizer.watchWindowShortcuts(window)
   })
 
-
-  const tray = new Tray(process.platform == 'win32' ? windowsIco : process.platform == 'darwin' ? icoPng : icoPng)
+  const tray = new Tray(
+    process.platform == 'win32' ? windowsIco : process.platform == 'darwin' ? icoPng : icoPng
+  )
   // Definisci il custom context menu
   tray.on('click', () => {
     toggleDialog()
