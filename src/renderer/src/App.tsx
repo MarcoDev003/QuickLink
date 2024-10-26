@@ -2,10 +2,6 @@
 
 import Logo from './assets/img/icon.png'
 
-// Icons
-import { FaBell } from 'react-icons/fa'
-import { FaPlus } from 'react-icons/fa6'
-
 function App(): JSX.Element {
   // const ipcHandle = (): void => window.electron.ipcRenderer.send('ping')
 
@@ -39,16 +35,6 @@ function App(): JSX.Element {
           </button>
         </div>
       </div>
-
-      {/* home, qua sotto */}
-      {/* <div className="flex justify-end items-center gap-4 p-5 bg-[var(--quicklink-background)]">
-        <button className="text-white text-xl">
-          <FaBell />
-        </button>
-        <button className="bg-primary glow text-white p-2 rounded-md text-xl">
-          <FaPlus />
-        </button>
-      </div> */}
     </>
   )
 }
